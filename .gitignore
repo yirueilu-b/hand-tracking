@@ -1,0 +1,7 @@
+venv
+.ipynb_checkpoints
+.idea
+
+*.pyc
+*.jpg
+*.png
