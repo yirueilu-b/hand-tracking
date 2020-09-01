@@ -5,7 +5,7 @@ import numpy as np
 import csv
 import os
 
-DETECTION_THRESHOLD = 0.7
+DETECTION_THRESHOLD = 0.9
 NMS_THRESHOLD = 0.5
 ANCHORS_PATH = os.path.join("models", "anchors.csv")
 with open(ANCHORS_PATH, "r") as csv_f: anchors = np.r_[[x for x in csv.reader(csv_f, quoting=csv.QUOTE_NONNUMERIC)]]
@@ -84,6 +84,10 @@ def non_max_suppression_fast(boxes, probabilities=None, overlap_threshold=0.3):
     return pick
 
 
+def normalize_image(rgb_image):
+    return np.ascontiguousarray(2 * ((rgb_image / 255) - 0.5).astype('float32'))
+
+
 def preprocess(bgr_image, w, h):
     # convert to rgb
     rgb_image = bgr_image[:, :, ::-1]
@@ -91,13 +95,15 @@ def preprocess(bgr_image, w, h):
     shape = np.r_[rgb_image.shape]
     padding = (shape.max() - shape[:2]).astype('uint32') // 2
     rgb_image = np.pad(rgb_image, ((padding[0], padding[0]), (padding[1], padding[1]), (0, 0)), mode='constant')
+    padding_image = rgb_image.copy()
+
     rgb_image = cv2.resize(rgb_image, (w, h))
     rgb_image = np.ascontiguousarray(rgb_image)
     # normalize
-    rgb_image = np.ascontiguousarray(2 * ((rgb_image / 255) - 0.5).astype('float32'))
+    rgb_image = normalize_image(rgb_image)
     # reshape as input shape
     rgb_image = rgb_image[tf.newaxis, ...]
-    return rgb_image, padding
+    return rgb_image, padding_image, padding
 
 
 def extract_bboxes_and_keypoints(output_reg, output_clf, padding):
@@ -115,6 +121,8 @@ def extract_bboxes_and_keypoints(output_reg, output_clf, padding):
     keypoints_set = output_reg[box_ids, 4:].reshape(-1, 7, 2)
     for i in range(len(keypoints_set)):
         keypoints_set[i] = keypoints_set[i] + center_wo_offst[i]
+    ori_bboxes = bboxes.copy()
+    ori_keypoints_set = keypoints_set.copy()
 
     for i, bbox in enumerate(bboxes):
         cx, cy, w, h = bbox
@@ -136,7 +144,7 @@ def extract_bboxes_and_keypoints(output_reg, output_clf, padding):
             tmp_keypoint[1] -= padding[0]
             keypoints_set[i][j] = (int(tmp_keypoint[0]), int(tmp_keypoint[1]))
 
-    return bboxes, keypoints_set
+    return bboxes, keypoints_set, ori_bboxes, ori_keypoints_set
 
 
 def draw_bboxes(image, bboxes):

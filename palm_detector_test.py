@@ -21,11 +21,11 @@ if __name__ == '__main__':
     while True:
         # read a frame
         ret, original_frame = cap.read()
-        input_image, padding = preprocess(original_frame, INPUT_WIDTH, INPUT_HEIGHT)
+        palm_input_image, padding_image, padding = preprocess(original_frame, INPUT_WIDTH, INPUT_HEIGHT)
 
         # inference
         output_details = model.get_output_details()
-        model.set_tensor(model.get_input_details()[0]['index'], input_image)
+        model.set_tensor(model.get_input_details()[0]['index'], palm_input_image)
         model.invoke()
         output_reg = model.get_tensor(output_details[0]['index'])[0]
         output_clf = model.get_tensor(output_details[1]['index'])[0, :, 0]
