@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-KEY_POINT_COLOR, KEY_POINT_WIDTH, KEY_POINT_RADIUS = (255, 255, 0), 3, 3
+KEY_POINT_COLOR, KEY_POINT_WIDTH, KEY_POINT_RADIUS = (20, 20, 20), 3, 3
 SKELETON_COLORS = ((255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0), (0, 255, 255))
 SKELETON = ((0, 1, 2, 3, 4), (0, 5, 6, 7, 8), (0, 9, 10, 11, 12), (0, 13, 14, 15, 16), (0, 17, 18, 19, 20))
 IMAGE_WIDTH = 640

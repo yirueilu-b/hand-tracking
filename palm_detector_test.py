@@ -31,7 +31,7 @@ if __name__ == '__main__':
         output_clf = model.get_tensor(output_details[1]['index'])[0, :, 0]
 
         # convert prediction back to original image
-        bboxes, keypoints_set = extract_bboxes_and_keypoints(output_reg, output_clf, padding)
+        bboxes, keypoints_set, ori_bboxes, ori_keypoints_set = extract_bboxes_and_keypoints(output_reg, output_clf, padding)
 
         # visualize
         original_frame = draw_bboxes(original_frame, bboxes)

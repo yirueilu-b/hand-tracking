@@ -9,7 +9,7 @@ IMAGE_WIDTH = 640
 IMAGE_HEIGHT = 480
 INPUT_WIDTH = 256
 INPUT_HEIGHT = 256
-WINDOW_NAME = 'MediaPipe Palm Detection'
+WINDOW_NAME = 'MediaPipe Hand Tracking'
 PALM_MODEL_PATH = os.path.join('models', 'palm_detection_without_custom_op.tflite')
 LANDMARK_MODEL_PATH = os.path.join('models', 'hand_landmark.tflite')
 

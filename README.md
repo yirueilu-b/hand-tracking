@@ -16,6 +16,18 @@ Run `python hand_tracking_test.py` to test hand tracking with a web cam.
 
 ( multiple hands tracking is available )
 
+## Result
+
+- `palm_detector_test.py`
+
+    ![](https://i.imgur.com/6QWVJyT.png)
+
+- `hand_tracking_test.py`
+
+    ![](https://i.imgur.com/08LCtzM.png)
+    
+    ![](https://i.imgur.com/MUmtcuj.png)
+
 ## TODO
 
 - Optimize code to increase performance
