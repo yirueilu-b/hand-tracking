@@ -20,13 +20,13 @@ Run `python hand_tracking_test.py` to test hand tracking with a web cam.
 
 - `palm_detector_test.py`
 
-    ![](https://i.imgur.com/6QWVJyT.png)
+    ![](https://i.imgur.com/6QWVJyTm.png)
 
 - `hand_tracking_test.py`
 
-    ![](https://i.imgur.com/08LCtzM.png)
+    ![](https://i.imgur.com/08LCtzMm.png)
     
-    ![](https://i.imgur.com/MUmtcuj.png)
+    ![](https://i.imgur.com/MUmtcujm.png)
 
 ## TODO
 
