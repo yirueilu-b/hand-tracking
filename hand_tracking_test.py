@@ -13,7 +13,6 @@ WINDOW_NAME = 'MediaPipe Hand Tracking'
 PALM_MODEL_PATH = os.path.join('models', 'palm_detection_without_custom_op.tflite')
 LANDMARK_MODEL_PATH = os.path.join('models', 'hand_landmark.tflite')
 
-
 if __name__ == '__main__':
     cap = cv2.VideoCapture(1)
     cv2.resizeWindow(WINDOW_NAME, IMAGE_WIDTH, IMAGE_HEIGHT)
@@ -26,6 +25,7 @@ if __name__ == '__main__':
     landmark_model.allocate_tensors()
     landmark_input_details = landmark_model.get_input_details()
     landmark_output_details = landmark_model.get_output_details()
+    # out = cv2.VideoWriter('output.mp4', -1, 5., (640, 480))
 
     print(INPUT_WIDTH, INPUT_HEIGHT)
     while True:
@@ -38,7 +38,8 @@ if __name__ == '__main__':
         output_reg = palm_model.get_tensor(palm_output_details[0]['index'])[0]
         output_clf = palm_model.get_tensor(palm_output_details[1]['index'])[0, :, 0]
         # convert prediction back to original image
-        bboxes, keypoints_set, ori_bboxes, ori_keypoints_set = extract_bboxes_and_keypoints(output_reg, output_clf, padding)
+        bboxes, keypoints_set, ori_bboxes, ori_keypoints_set = extract_bboxes_and_keypoints(output_reg, output_clf,
+                                                                                            padding)
         # visualize palm
         original_frame = draw_bboxes(original_frame, bboxes)
         original_frame = draw_keypoints_set(original_frame, keypoints_set)
@@ -55,6 +56,7 @@ if __name__ == '__main__':
         # visualize landmarks
         original_frame = draw_landmraks_set(original_frame, landmarks_set)
         cv2.imshow(WINDOW_NAME, original_frame)
+        # out.write(original_frame)
 
         # press 'q' to exit
         if cv2.waitKey(1) & 0xFF == ord('q'):

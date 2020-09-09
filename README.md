@@ -27,6 +27,9 @@ Run `python hand_tracking_test.py` to test hand tracking with a web cam.
     ![](https://i.imgur.com/08LCtzMm.png)
     
     ![](https://i.imgur.com/MUmtcujm.png)
+    
+    ![](https://i.imgur.com/kP3h1Gp.gif)
+    
 
 ## TODO
 
