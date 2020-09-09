@@ -28,9 +28,8 @@ Run `python hand_tracking_test.py` to test hand tracking with a web cam.
     
     ![](https://i.imgur.com/MUmtcujm.png)
     
-    ![](https://i.imgur.com/kP3h1Gp.gif)
+    ![](https://i.imgur.com/LOjw1Ub.gif)
     
-
 ## TODO
 
 - Optimize code to increase performance
