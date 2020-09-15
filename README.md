@@ -16,6 +16,11 @@ Run `python hand_tracking_test.py` to test hand tracking with a web cam.
 
 ( multiple hands tracking is available )
 
+`python hand_tracking_test_2.py` is modified from `python hand_tracking_test.py`
+It follows the structure that mentioned in MediaPipe documents
+
+( Palm detector activates only at first frame and when the number of valid hands less than pre-defined number )
+
 ## Result
 
 - `palm_detector_test.py`
@@ -35,8 +40,6 @@ Run `python hand_tracking_test.py` to test hand tracking with a web cam.
 - Optimize code to increase performance
 
 - More visualization options
-
-- Modify workflow as MediaPipe ( palm detection runs in some specific situations )
 
 ## Acknowledgments
 
