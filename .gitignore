@@ -4,5 +4,3 @@ venv
 .idea
 
 *.pyc
-*.jpg
-*.png

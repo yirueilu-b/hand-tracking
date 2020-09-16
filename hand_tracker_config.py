@@ -16,7 +16,7 @@ class Config:
         self.NMS_THRESHOLD = 0.3
         self.HAND_THRESHOLD = 0.9
         self.BOX_SHIFT = 0.2
-        self.BOX_ENLARGE = 1.3
+        self.BOX_ENLARGE = 1.5
 
         self.TARGET_TRIANGLE = np.float32([[128, 128], [128, 0], [0, 128]])
         self.TARGET_BOX = np.float32([[0, 0, 1], [256, 0, 1], [256, 256, 1], [0, 256, 1], ])
