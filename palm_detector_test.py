@@ -2,7 +2,7 @@ import os
 
 import cv2
 import tensorflow as tf
-from detection_utils import preprocess, extract_bboxes_and_keypoints, draw_bboxes, draw_keypoints_set
+from utils.detection_utils import preprocess, extract_bboxes_and_keypoints, draw_bboxes, draw_keypoints_set
 
 IMAGE_WIDTH = 640
 IMAGE_HEIGHT = 480

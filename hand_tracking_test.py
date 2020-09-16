@@ -2,8 +2,8 @@ import os
 
 import cv2
 import tensorflow as tf
-from detection_utils import preprocess, extract_bboxes_and_keypoints, draw_bboxes, draw_keypoints_set, normalize_image
-from landmark_utils import get_sources, warp_affine, convert_landmark_back, draw_landmraks_set
+from utils.detection_utils import preprocess, extract_bboxes_and_keypoints, draw_bboxes, draw_keypoints_set, normalize_image
+from utils.landmark_utils import get_sources, warp_affine, convert_landmark_back, draw_landmraks_set
 
 IMAGE_WIDTH = 640
 IMAGE_HEIGHT = 480
