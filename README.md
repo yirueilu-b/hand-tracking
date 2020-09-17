@@ -31,16 +31,14 @@ It follows the structure that mentioned in MediaPipe documents
 
     ![](https://i.imgur.com/08LCtzMm.png)
     
-    ![](https://i.imgur.com/MUmtcujm.png)
-    
     ![](https://i.imgur.com/LOjw1Ub.gif)
-    
-## TODO
 
-- Optimize code to increase performance
+- `run_hand_tracker.py`
 
-- More visualization options
+    ![](https://i.imgur.com/CDwPvEg.gif)
 
 ## Acknowledgments
 
-This work is a study of models developed by Google and distributed as a part of the [Mediapipe](https://github.com/google/mediapipe) framework. Big thanks to [wolterlw/hand_tracking](https://github.com/wolterlw/hand_tracking), [metalwhale/hand_tracking](https://github.com/metalwhale/hand_tracking) and [JuliaPoo/MultiHand-Tracking](https://github.com/JuliaPoo/MultiHand-Tracking) for python implement.
+This work is a study of models developed by Google and distributed as a part of the [Mediapipe](https://github.com/google/mediapipe) framework. 
+
+Thanks to [wolterlw/hand_tracking](https://github.com/wolterlw/hand_tracking), [metalwhale/hand_tracking](https://github.com/metalwhale/hand_tracking) and [JuliaPoo/MultiHand-Tracking](https://github.com/JuliaPoo/MultiHand-Tracking) for python implement.

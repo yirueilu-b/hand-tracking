@@ -168,6 +168,7 @@ class HandTracker:
         self.landmark_model.set_tensor(self.landmark_input_details[0]['index'], hand.reshape(1, 256, 256, 3))
         self.landmark_model.invoke()
         landmark = self.landmark_model.get_tensor(self.landmark_output_details[0]['index']).reshape(-1, 2)
+        # landmark = self.landmark_model.get_tensor(self.landmark_output_details[0]['index']).reshape(-1, 3)[:, [0, 1]]
         is_hand = self.landmark_model.get_tensor(self.landmark_output_details[1]['index']) > self.config.HAND_THRESHOLD
         return landmark, is_hand
 
