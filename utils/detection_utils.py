@@ -11,8 +11,6 @@ ANCHORS_PATH = os.path.join("models", "anchors.csv")
 with open(ANCHORS_PATH, "r") as csv_f: anchors = np.r_[[x for x in csv.reader(csv_f, quoting=csv.QUOTE_NONNUMERIC)]]
 BBOX_COLOR, LINE_WIDTH = (0, 255, 0), 2
 KEY_POINT_COLOR, KEY_POINT_WIDTH, KEY_POINT_RADIUS = (255, 255, 0), 3, 3
-IMAGE_WIDTH = 640
-IMAGE_HEIGHT = 480
 INPUT_WIDTH = 256
 INPUT_HEIGHT = 256
 
@@ -106,13 +104,14 @@ def preprocess(bgr_image, w, h):
     return rgb_image, padding_image, padding
 
 
-def extract_bboxes_and_keypoints(output_reg, output_clf, padding):
+def extract_bboxes_and_keypoints(output_reg, output_clf, padding, original_image):
+    size = max(original_image.shape)
     scores = sigmoid(output_clf)
     output_reg = output_reg[scores > DETECTION_THRESHOLD]
     output_clf = output_clf[scores > DETECTION_THRESHOLD]
     candidate_anchors = anchors[scores > DETECTION_THRESHOLD]
-    if output_reg.shape[0] == 0:
-        print("No hands found")
+    # if output_reg.shape[0] == 0:
+    #     print("No hands found")
     moved_output_reg = output_reg.copy()
     moved_output_reg[:, :2] = moved_output_reg[:, :2] + candidate_anchors[:, :2] * 256
     box_ids = non_max_suppression_fast(moved_output_reg[:, :4], output_clf)
@@ -126,10 +125,10 @@ def extract_bboxes_and_keypoints(output_reg, output_clf, padding):
 
     for i, bbox in enumerate(bboxes):
         cx, cy, w, h = bbox
-        cy = cy * IMAGE_WIDTH // INPUT_HEIGHT
-        cx = cx * IMAGE_WIDTH // INPUT_WIDTH
-        h_resize = h * IMAGE_WIDTH // INPUT_HEIGHT
-        w_resize = w * IMAGE_WIDTH // INPUT_WIDTH
+        cy = cy * size // INPUT_HEIGHT
+        cx = cx * size // INPUT_WIDTH
+        h_resize = h * size // INPUT_HEIGHT
+        w_resize = w * size // INPUT_WIDTH
         cx -= padding[1]
         cy -= padding[0]
         x1, y1, x2, y2 = (cx - w_resize // 2, cy - h_resize // 2, cx + w_resize // 2, cy + h_resize // 2)
@@ -138,8 +137,8 @@ def extract_bboxes_and_keypoints(output_reg, output_clf, padding):
     for i, keypoints in enumerate(keypoints_set):
         for j, keypoint in enumerate(keypoints):
             tmp_keypoint = keypoint.copy()
-            tmp_keypoint[0] = tmp_keypoint[0] * IMAGE_WIDTH // INPUT_WIDTH
-            tmp_keypoint[1] = tmp_keypoint[1] * IMAGE_WIDTH // INPUT_HEIGHT
+            tmp_keypoint[0] = tmp_keypoint[0] * size // INPUT_WIDTH
+            tmp_keypoint[1] = tmp_keypoint[1] * size // INPUT_HEIGHT
             tmp_keypoint[0] -= padding[1]
             tmp_keypoint[1] -= padding[0]
             keypoints_set[i][j] = (int(tmp_keypoint[0]), int(tmp_keypoint[1]))

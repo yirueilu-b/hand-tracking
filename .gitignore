@@ -2,6 +2,9 @@ my_venv
 venv
 .ipynb_checkpoints
 .idea
+dataset
 
 *.pyc
 *.mp4
+
+collect_palm_data.py
