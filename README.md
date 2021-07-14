@@ -6,20 +6,20 @@ Inference Google's MediaPipe hand tracking models with Python
 
 `pip install -r requirements.txt`
 
-`jupyter notebook`
+**See the Hand Tracking Process Step by Step**
 
-Run `explore_traking_workflow.ipynb` to see how these two models work.
+- start jupyter `jupyter notebook`
 
-Run `python palm_detector_test.py` to test only the palm detector with a web cam.
+- check out `explore_traking_workflow.ipynb`
 
-Run `python hand_tracking_test.py` to test hand tracking with a web cam.
+**Simple Demo**
 
-( multiple hands tracking is available )
+- `python palm_detector_test.py` to test only the palm detector with a webcam.
 
-`run_hand_tracker.py` is modified from `python hand_tracking_test.py`
-It follows the structure that mentioned in MediaPipe documents
+- `python hand_tracking_test.py` to test hand tracking with a webcam. ( multiple hands tracking is available )
 
-( Palm detector activates only at first frame and when the number of valid hands less than pre-defined number )
+- `run_hand_tracker.py` is modified from `python hand_tracking_test.py`
+  > It follows the structure that mentioned in MediaPipe documents ( Palm detector activates only at first frame and when the number of valid hands less than pre-defined number )
 
 ## Result
 
